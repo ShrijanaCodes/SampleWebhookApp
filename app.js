@@ -9,13 +9,13 @@ const config = require('./config');
 const sgMail = require('@sendgrid/mail');
 const path = require('path');
 //access Sendgrid API key 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+sgMail.setApiKey(config.SENDGRID_API_KEY);
 // Generate a JWT token to authenticate and make Zoom API calls 
 const payload = {
-    iss: config.APIKey,
+    iss: config.ZOOM_API_KEY,
     exp: ((new Date()).getTime() + 5000)
 };
-const token = jwt.sign(payload, config.APISecret);
+const token = jwt.sign(payload, config.ZOOM_API_SECRET);
 app.use(express.static('public'));
 
 //Landing Page -- todo: Redesign the landing page based on what we want to add. 
@@ -24,19 +24,19 @@ app.get('/', (request, response) => {
 
 });
 
-// Set up a webhook listener for Webinar Ended Event
-app.post('/webinarEnded', bodyParser.raw({ type: 'application/json' }), (req, res) => {
+// Set up a webhook listener for your Webhook Event - in this case we are listening to Webinar Ended event but you can add any events of your choice.
+app.post('/webhookListener', bodyParser.raw({ type: 'application/json' }), (req, res) => {
 
     let event;
 
     try {
         event = JSON.parse(req.body);
     } catch (err) {
-        response.status(400).send(`Webhook Error: ${err.message}`);
+        res.status(400).send(`Webhook Error: ${err.message}`);
     }
     // Check to see if you received the event or not.
     console.log(event)
-    if (req.headers.authorization === config.VerificationToken) {
+    if (req.headers.authorization === config.VERIFICATION_TOKEN) {
         res.status(200);
 
         console.log("Webinar Ended Webhook Recieved.") 
@@ -63,16 +63,19 @@ app.post('/webinarEnded', bodyParser.raw({ type: 'application/json' }), (req, re
         rp(options)
             .then(function (response) {
 
-                var myregistrantobj = response.registrants;
+                var myregistrantobj= response.registrants;
                 //console.log("Registrants:", myregistrantobj)
                 //fetch only the email addresses from the response and store the addresses in an array
-                var emailList = []
+                
+                 //Either use for loop or use the map() function to store email addresses only.
+                 var emailList = []
                 for (var i = 0; i < myregistrantobj.length; i++) {
                     //Store emails as an array of strings to match the request body for SendGrid API
                     emailobjs = myregistrantobj[i].email
                     emailList.push(emailobjs);
                     
                 }
+              
                 // check if 
                 console.log(emailList);
                 
@@ -105,7 +108,7 @@ app.post('/webinarEnded', bodyParser.raw({ type: 'application/json' }), (req, re
 
     } else {
 
-        response.status(403).end('Access forbidden');
+        res.status(403).end('Access forbidden');
         console.log("Invalid Post Request.")
     }
 });
@@ -113,5 +116,5 @@ app.post('/webinarEnded', bodyParser.raw({ type: 'application/json' }), (req, re
 
 
 app.listen(3000, () => {
-    console.log('Server is up and running on port 3005.')
+    console.log('Server is up and running on port 3000.')
 })
