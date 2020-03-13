@@ -20,11 +20,11 @@ This is a sample app that demonstrates how to automate a part of the Webinar com
 
 2. Once the Webinar is scheduled, share the Registration Link with others so that they can register for the Webinar.
 
-3. Create a [JWT app](https://marketplace.zoom.us/docs/guides/getting-started/app-types/create-jwt-app) in the Zoom App Marketplace. Provide all the information required and your app credentials will be generated. In the features page,add a new [event subscription](https://marketplace.zoom.us/docs/guides/getting-started/app-types/create-jwt-app#features). <br>For the Event notification endpoint URL, use [ngrok](https://ngrok.com/download) or a similar service to generate a HTTP tunnel. Once you download ngrok, run `./ngrok http 3000.` command in your terminal. Provide the generated url starting with "https" as your Event notification endpoint URL. Under Event Types, click on Webinar and subscribe to the "Webinar Ended" event. Save the subscription and click "Continue". Your JWT app will be activated in your account. From this app, you will need the generated API Key, API Secret and Verification Token. 
+3. Create a [JWT app](https://marketplace.zoom.us/docs/guides/getting-started/app-types/create-jwt-app) in the Zoom App Marketplace. Provide all the information required and your app credentials will be generated. In the features page,add a new [event subscription](https://marketplace.zoom.us/docs/guides/getting-started/app-types/create-jwt-app#features). <br><br>For the **Event notification endpoint URL**, use [ngrok](https://ngrok.com/download) or a similar service to generate a HTTP tunnel. Once you download ngrok, run `./ngrok http 3000.` command in your terminal. Provide the generated url starting with "https" as your Event notification endpoint URL. Under Event Types, click on Webinar and subscribe to the "Webinar Ended" event. Save the subscription and click "Continue". Your JWT app will be activated in your account. From this app, you will need the generated **API Key**, **API Secret** and **Verification Token**. 
 
 [![Screen-Shot-2020-03-13-at-9-15-28-AM.png](https://i.postimg.cc/L659yMrw/Screen-Shot-2020-03-13-at-9-15-28-AM.png)](https://postimg.cc/LndFXG43)
 
-4. Create a free trial [SendGrid Twilio](https://sendgrid.com/pricing/) account. Login to your account, visit their [integration page](https://app.sendgrid.com/guide/integrate/langs/nodejs) and create an API Key. You will use this API Key at a later step. 
+4. Create a free trial [SendGrid Twilio](https://sendgrid.com/pricing/) account. Login to your account, visit their [integration page](https://app.sendgrid.com/guide/integrate/langs/nodejs) and create an **API Key**. You will use this API Key at a later step. 
 
 5. Clone this repository by running this git command in your terminal: `git clone https://github.com/ShrijanaCodes/SampleWebhookApp.git`
 6. Install all the dependencies by running `npm install` command in your terminal.
@@ -36,7 +36,7 @@ APISecret='Provide Your Zoom API Secret Generated in Step 2 Here'
 VerificationToken='Provide Your Zoom App Verification Token Generated in Step 2 Here'
 SENDGRID_API_KEY='Provide Your SendGrid API Key Generated in Step 4 Here'
 ```
-9. Add the .env file to the .gitignore file either by using your editor or by running `echo ".env" >> .gitignore` command in your terminal. This way, you will minimize the risk of exposing your credentials as Git will ignore the .env file.
+9. Add the ".env" file to the ".gitignore" file either by using your editor or by running `echo ".env" >> .gitignore` command in your terminal. This way, you will minimize the risk of exposing your credentials as Git will ignore the .env file.
 
 10. In the "app.js" file, provide your email address in the "from" variable located inside the "msg" object. You can also edit the values of the "subject" and "text" fields. 
 
