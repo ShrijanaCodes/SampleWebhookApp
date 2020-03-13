@@ -25,7 +25,7 @@ app.get('/', (request, response) => {
 });
 
 // Set up a webhook listener for your Webhook Event - in this case we are listening to Webinar Ended event but you can add any events of your choice.
-app.post('/webhookListener', bodyParser.raw({ type: 'application/json' }), (req, res) => {
+app.post('/', bodyParser.raw({ type: 'application/json' }), (req, res) => {
 
     let event;
 
@@ -76,15 +76,15 @@ app.post('/webhookListener', bodyParser.raw({ type: 'application/json' }), (req,
                     
                 }
               
-                // check if 
+                // check if the emails have been fetched or not by printing to the console
                 console.log(emailList);
                 
-                // Call SendGrid Email API to send the email to participants 
+                // Call SendGrid Email API to send the email to participants. You can customize the email content as you like.
 
                 const msg = {
 
                     to: emailList,
-                    from: 'shrijana.ghim@gmail.com',
+                    from: 'provideyouremailaddresshere@gmail.com',
                     subject: 'We are sorry that we missed you.',
                     text: 'Please, let us know if the timing of these webinars do not work for you. We hope you can join us next time.'
 
