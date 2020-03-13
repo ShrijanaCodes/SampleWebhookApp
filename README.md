@@ -2,8 +2,8 @@
 This is a sample app that demonstrates how to automate a part of the Webinar communications workflow using Zoom Webhooks, Zoom API and Sendgrid Email API. This tool is still being developed and more features will be added soon. This Readme is intended to help you get started with the app with its existing features and a comprehensive documentation will be provided in the [Marketplace Developer Docs](https://marketplace.zoom.us/docs/guides) after the project is complete. 
 
 **Prerequisites:**
-* Zoom Marketplace Account
-* Zoom account with Webinar License
+* [Zoom account](https://zoom.us) with Webinar License
+* [Zoom Marketplace Account](https://marketplace.zoom.us/docs/guides)
 * A Free Trial [SendGrid Twilio Account](https://sendgrid.com/pricing/)
 
 ### Workflow
