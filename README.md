@@ -40,9 +40,11 @@ SENDGRID_API_KEY='Provide Your SendGrid API Key Generated in Step 4 Here'
 ```
 9. Add the .env file to the .gitignore file either by using your editor or by running `echo ".env" >> .gitignore` command in your terminal. This way, you will minimize the risk of exposing your credentials as Git will ignore the .env file.
 
-10. Start the app by running `node app.js` command in your terminal. 
+10. In the "app.js" file, provide your email address in the "from" variable located inside the "msg" object. You can also edit the values of the "subject" and "text" fields. 
 
-11. Voila! Your app will be up and running on port 3000. While your app is running, start your Scheduled Webinar and end it. Once the Webinar is ended, if any attendee who had registered for the Webinar, did not actually attend the Webinar, they will recieve an automated email after the Webinar Ends.  
+11. Start the app by running `node app.js` command in your terminal. 
+
+12. Voila! Your app will be up and running on port 3000. While your app is running, start your Scheduled Webinar and end it. Once the Webinar is ended, if any attendee who had registered for the Webinar, did not actually attend the Webinar, they will recieve an automated email after the Webinar Ends.  
 
 In this demo app, we have used Webinar Ended Event, List Absentees API and SendGrid Send Email API. However, you can customize the workflow based on your needs by using any available Zoom APIs and Webhooks. 
 
