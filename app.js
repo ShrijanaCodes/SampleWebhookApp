@@ -1,5 +1,4 @@
 // To-do: Add chatbot functionality
-// Brainstorm with Tommy for additional features
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
